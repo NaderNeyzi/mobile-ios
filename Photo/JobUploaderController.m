@@ -23,6 +23,7 @@
 
 @interface JobUploaderController (){
     BOOL running;
+    
     ALAssetsLibrary *library;
     NSArray *imagesAlreadySynced;
     PhotoUploader *uploader;
@@ -154,6 +155,7 @@
     // put them in the table to upload
     [group setAssetsFilter:[ALAssetsFilter allPhotos]];
     int assetsNumber = [group numberOfAssets];
+    NSArray *temporaryImagesAlreadySynced = [imagesAlreadySynced copy];
     __block int assetsNotUploaded = 0;
     
     @autoreleasepool {
@@ -173,7 +175,7 @@
                  // check if user already uploaded
                  NSString *asset =  [AssetsLibraryUtilities getAssetsUrlId:result.defaultRepresentation.url] ;
                  
-                 BOOL alreadyUploaded = [imagesAlreadySynced containsObject:asset];
+                 BOOL alreadyUploaded = [temporaryImagesAlreadySynced containsObject:asset];
                  if (!alreadyUploaded){
                      assetsNotUploaded++;
                      
