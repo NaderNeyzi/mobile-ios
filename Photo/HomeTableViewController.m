@@ -98,7 +98,6 @@
         }else{
             // next time it can be reloaded
             self.needsUpdate = YES;
-            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
         }
     }
 #ifdef GOOGLE_ANALYTICS_ENABLED
