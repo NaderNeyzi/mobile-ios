@@ -256,7 +256,10 @@
                         
                         if ( self.page == 2 ){
                             // first time loading
-                            [self.photos removeAllObjects];
+                            if (self.photos)
+                                [self.photos removeAllObjects];
+                            else
+                                self.photos = [NSMutableArray array];
                         }
                         
                         // Loop through each entry in the dictionary and create an array of photos
